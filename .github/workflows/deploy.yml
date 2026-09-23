@@ -16,13 +16,19 @@ jobs:
         with:
           host:     ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASSWORD }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
           script: |
             set -e
             cd /var/www/DevPortfolio
 
-            # Medida de seguridad: el reset --hard machacaría cualquier cambio
-            # local sin comitear en el servidor, así que abortamos si los hay.
+            # --- Guardas: el deploy NUNCA puede perder trabajo del servidor ---------
+            # 1) Tiene que estar en main (si no, movería otra rama).
+            branch="$(git symbolic-ref --short -q HEAD || echo 'HEAD suelto')"
+            if [ "$branch" != "main" ]; then
+              echo "❌ Deploy abortado: el servidor está en '$branch', no en main."
+              exit 1
+            fi
+            # 2) Sin cambios sin comitear ni ficheros nuevos sin versionar.
             if [ -n "$(git status --porcelain)" ]; then
               echo "❌ Deploy abortado: hay cambios locales sin comitear en el servidor:"
               git status --short
@@ -31,7 +37,15 @@ jobs:
 
             git remote set-url origin git@github-portfolio:CarlosBTav/DevPortfolio.git
             git fetch origin main
-            git reset --hard origin/main
+
+            # 3) Sin commits locales que no estén en GitHub: se avanza solo con
+            #    --ff-only, que falla en vez de descartar commits (nada de reset --hard).
+            if ! git merge-base --is-ancestor HEAD origin/main; then
+              echo "❌ Deploy abortado: el servidor tiene commits que no están en GitHub:"
+              git log --oneline origin/main..HEAD
+              exit 1
+            fi
+            git merge --ff-only origin/main
 
             npm ci
             npm run build
