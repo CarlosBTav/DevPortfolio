@@ -48,11 +48,11 @@ class ImageDerivatives
      * Devuelve siempre algo usable: si no hay copias, apunta al original.
      *
      * @param  string  $stored  Ruta guardada en base de datos, p. ej. "storage/projects/x.png"
-     * @return array{src: string, srcset: string, width: int|null, height: int|null}
+     * @return array{src: string, srcset: string, thumb: string, width: int|null, height: int|null}
      */
     public static function img(string $stored): array
     {
-        $fallback = ['src' => asset($stored), 'srcset' => '', 'width' => null, 'height' => null];
+        $fallback = ['src' => asset($stored), 'srcset' => '', 'thumb' => asset($stored), 'width' => null, 'height' => null];
 
         $relative = static::relative($stored);
         if ($relative === null) {
@@ -79,6 +79,9 @@ class ImageDerivatives
         return [
             'src' => end($sources),
             'srcset' => implode(', ', $srcset),
+            // La más pequeña, para miniaturas: pedir la grande y encogerla por
+            // CSS descarga bytes que no se llegan a ver.
+            'thumb' => reset($sources),
         ] + static::dimensions($relative);
     }
 
@@ -165,13 +168,22 @@ class ImageDerivatives
         return substr($stored, strlen('storage/'));
     }
 
-    /** "projects/x.png" + 640 → "projects/opt/x-640.webp" */
+    /**
+     * "products/x.jpg" + 640 → "opt/products/x-640.webp"
+     *
+     * Las copias cuelgan de un `opt/` en la raíz del disco, no de un subdirectorio
+     * al lado del original. Motivo práctico: los directorios de subidas suelen
+     * pertenecer a www-data sin permiso de escritura para el grupo, así que un
+     * `mkdir` dentro falla cuando esto se ejecuta desde la línea de comandos. La
+     * raíz del disco sí es escribible por el grupo, y así ambos usuarios pueden
+     * generar copias.
+     */
     private static function derivativePath(string $relative, int $width): string
     {
         $directory = trim(dirname($relative), '.' . DIRECTORY_SEPARATOR);
         $name = pathinfo($relative, PATHINFO_FILENAME);
 
-        return ($directory !== '' ? $directory . '/' : '') . 'opt/' . $name . '-' . $width . '.webp';
+        return 'opt/' . ($directory !== '' ? $directory . '/' : '') . $name . '-' . $width . '.webp';
     }
 
     /** Dimensiones reales del original, para el hueco que reserva el navegador. */
