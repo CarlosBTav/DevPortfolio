@@ -290,8 +290,8 @@
                             Empezemos tu proyecto
                             <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </a>
-                        @if(filled(env('APP_CONTACT_EMAIL')))
-                            <a href="mailto:{{ env('APP_CONTACT_EMAIL') }}" class="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 dark:border-white/10 dark:bg-transparent dark:text-slate-200 dark:hover:bg-white/5 sm:w-auto">
+                        @if(filled(config('contact.email')))
+                            <a href="mailto:{{ config('contact.email') }}" class="inline-flex w-full items-center justify-center rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50 dark:border-white/10 dark:bg-transparent dark:text-slate-200 dark:hover:bg-white/5 sm:w-auto">
                                 Correo
                             </a>
                         @endif

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Support\ImageDerivatives;
 use Illuminate\Support\Facades\Storage;
 
 class Project extends Model
@@ -62,6 +63,7 @@ class Project extends Model
     {
         foreach ($this->images ?? [] as $image) {
             Storage::disk('public')->delete(str_replace('storage/', '', $image));
+            ImageDerivatives::forget($image);
         }
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Support\ImageDerivatives;
 use App\Models\Technology;
 use App\Models\Client;
 use Illuminate\Http\Request;
@@ -162,6 +163,8 @@ class ProjectController extends Controller
                 $index = (int) substr($item, 4);
                 if (isset($newFiles[$index])) {
                     $path = $newFiles[$index]->store('projects', 'public');
+                    // Copia WebP ligera: el carrusel sirve esa, no el original.
+                    ImageDerivatives::generate($path);
                     $finalImages[] = 'storage/' . $path;
                 }
             }
@@ -171,6 +174,7 @@ class ProjectController extends Controller
         $imagesToDelete = array_diff($oldImages, $finalImages);
         foreach ($imagesToDelete as $img) {
             Storage::disk('public')->delete(str_replace('storage/', '', $img));
+            ImageDerivatives::forget($img);
         }
 
         $data['images'] = $finalImages;
@@ -225,6 +229,8 @@ class ProjectController extends Controller
                 $index = (int) substr($item, 4);
                 if (isset($newFiles[$index])) {
                     $path = $newFiles[$index]->store('projects', 'public');
+                    // Copia WebP ligera: el carrusel sirve esa, no el original.
+                    ImageDerivatives::generate($path);
                     $finalImages[] = 'storage/' . $path;
                 }
             }

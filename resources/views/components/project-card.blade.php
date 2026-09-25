@@ -19,7 +19,7 @@
 
     <!-- LLAMADA AL COMPONENTE CARRUSEL -->
     <div class="relative z-10 overflow-hidden rounded-t-2xl js-project-carousel-frame">
-        <x-carousel :images="$images" />
+        <x-carousel :images="$images" :alt="'Captura del proyecto '.$project->title" />
         <div class="project-carousel-border pointer-events-none absolute inset-0 rounded-t-2xl z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
     </div>
 

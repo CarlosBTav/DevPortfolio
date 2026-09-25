@@ -3,11 +3,11 @@
     $isHome = request()->routeIs('home');
     $contactFunnelHref = route('public.contact');
     $brandMain = config('app.name', 'Portfolio');
-    $mail = trim((string) env('APP_CONTACT_EMAIL', ''));
-    $gh = trim((string) env('APP_GITHUB_URL', 'https://github.com/CarlosBTav'));
-    $li = trim((string) env('APP_LINKEDIN_URL', 'https://www.linkedin.com/in/carlos-b-6a8a9a2b5/'));
-    $tel = trim((string) env('APP_CONTACT_PHONE', ''));
-    $loc = trim((string) env('APP_CONTACT_LOCATION', ''));
+    $mail = trim((string) config('contact.email'));
+    $gh = trim((string) config('contact.github'));
+    $li = trim((string) config('contact.linkedin'));
+    $tel = trim((string) config('contact.phone'));
+    $loc = trim((string) config('contact.location'));
     $hasFooterContact = $mail !== '' || $gh !== '' || $li !== '' || $tel !== '' || $loc !== '';
 @endphp
 

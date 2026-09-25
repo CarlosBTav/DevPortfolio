@@ -1749,8 +1749,8 @@
                             Empezar conversación
                             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        @if(filled(env('APP_CONTACT_EMAIL')))
-                            <a href="mailto:{{ env('APP_CONTACT_EMAIL') }}" class="hr-contact-secondary">
+                        @if(filled(config('contact.email')))
+                            <a href="mailto:{{ config('contact.email') }}" class="hr-contact-secondary">
                                 Escribir por correo
                             </a>
                         @endif

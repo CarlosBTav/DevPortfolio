@@ -7,7 +7,7 @@
 
 @section('content')
 @php
-    $directContactEmail = trim((string) (env('APP_CONTACT_EMAIL') ?: config('mail.from.address', '')));
+    $directContactEmail = trim((string) (config('contact.email') ?: config('mail.from.address', '')));
 @endphp
 
 <div class="relative min-h-dynamic overflow-x-hidden pb-24 pt-36 md:pt-44">

@@ -237,7 +237,11 @@
                     <article class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900/70">
                         <div class="aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-gray-800">
                             @if ($coverImage)
-                                <img src="{{ asset($coverImage) }}" alt="{{ $project->title }}" class="h-full w-full object-cover" loading="lazy">
+                                @php $cover = \App\Support\ImageDerivatives::img($coverImage); @endphp
+                                <img src="{{ $cover['src'] }}"
+                                     @if($cover['srcset']) srcset="{{ $cover['srcset'] }}" sizes="(min-width: 768px) 33vw, 100vw" @endif
+                                     @if($cover['width'] && $cover['height']) width="{{ $cover['width'] }}" height="{{ $cover['height'] }}" @endif
+                                     alt="{{ $project->title }}" class="h-full w-full object-cover" loading="lazy" decoding="async">
                             @else
                                 <div class="flex h-full items-center justify-center text-sm text-gray-400">Sin imagen</div>
                             @endif

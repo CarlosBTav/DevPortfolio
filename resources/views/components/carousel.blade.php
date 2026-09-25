@@ -3,7 +3,8 @@
 
 @props([
     'images' => [],
-    'fallback' => asset('img/logo.svg')
+    'fallback' => asset('img/logo.svg'),
+    'alt' => 'Imagen del proyecto',
 ])
 
 <div x-data="{
@@ -44,8 +45,27 @@
         <div class="flex w-full h-full transition-transform duration-500 ease-in-out"
              :style="'transform: translateX(-' + (currentIndex * 100) + '%)'">
             @foreach($images as $img)
+                @php
+                    // Copias WebP ligeras; si no existen, img() devuelve el original.
+                    $source = \App\Support\ImageDerivatives::img($img);
+                @endphp
                 <div class="w-full h-full flex-shrink-0">
-                    <img src="{{ asset($img) }}" class="w-full h-full object-cover" alt="Imagen del carrusel">
+                    {{-- La primera diapositiva va eager: es la que se ve sin
+                         interactuar. Las demás están desplazadas con translateX
+                         fuera de la caja, así que el navegador las carga cuando
+                         entran (pesan ~35 KB, el salto no se nota). --}}
+                    <img src="{{ $source['src'] }}"
+                         @if($source['srcset'])
+                             srcset="{{ $source['srcset'] }}"
+                             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                         @endif
+                         @if($source['width'] && $source['height'])
+                             width="{{ $source['width'] }}" height="{{ $source['height'] }}"
+                         @endif
+                         loading="{{ $loop->first ? 'eager' : 'lazy' }}"
+                         decoding="async"
+                         class="w-full h-full object-cover"
+                         alt="{{ $alt }}{{ $loop->count > 1 ? ' ('.$loop->iteration.' de '.$loop->count.')' : '' }}">
                 </div>
             @endforeach
         </div>
@@ -69,6 +89,7 @@
             </div>
         @endif
     @else
-        <img src="{{ $fallback }}" class="w-16 h-16 opacity-50">
+        <img src="{{ $fallback }}" class="w-16 h-16 opacity-50" width="64" height="64"
+             loading="lazy" decoding="async" alt="">
     @endif
 </div>
