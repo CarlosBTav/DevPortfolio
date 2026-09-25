@@ -465,3 +465,13 @@ In Sail:
 **Last Updated:** 2026-06-05  
 **Laravel Version:** 12.x  
 **PHP Version:** 8.2+
+
+## Tareas pendientes
+
+El backlog vivo de este proyecto está en [`.ai/PENDING.md`](.ai/PENDING.md);
+cómo se registra y se cierra una tarea, en
+[`.ai/workflows/pending.md`](.ai/workflows/pending.md). Lo transversal de la
+VPS va a `/var/www/.ai/PENDING.md`, no aquí.
+
+La organización del resto de documentación local se explica en
+[`.ai/README.md`](.ai/README.md).
