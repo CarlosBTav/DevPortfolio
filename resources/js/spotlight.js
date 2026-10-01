@@ -93,11 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const handleMouseMove = (e) => {
-        document.querySelectorAll('.js-spotlight-card, .js-project-card').forEach((card) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    // Un evento mousemove puede llegar varias veces por frame: se procesa solo el último
+    let pointer = null;
+    let pointerFrame = null;
+
+    const applyPointer = () => {
+        pointerFrame = null;
+        const e = pointer;
+        // Primero se leen todas las posiciones y luego se escribe: alternar ambas
+        // obligaría a recalcular estilos una vez por tarjeta
+        const cards = [...document.querySelectorAll('.js-spotlight-card, .js-project-card')];
+        const rects = cards.map((card) => card.getBoundingClientRect());
+        cards.forEach((card, i) => {
+            card.style.setProperty('--mouse-x', `${e.clientX - rects[i].left}px`);
+            card.style.setProperty('--mouse-y', `${e.clientY - rects[i].top}px`);
         });
 
         footers().forEach((footer) => {
@@ -122,7 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    const handleMouseMove = (e) => {
+        pointer = { clientX: e.clientX, clientY: e.clientY };
+        pointerFrame ??= requestAnimationFrame(applyPointer);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', () => {
         setFooterSpotlightOpacities('0');
         setHeaderMouseLayerOpacities('0');
@@ -130,25 +144,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateHeaderActiveNavSpotlight();
 
+    let navFrame = null;
+    const scheduleNavSpotlight = () => {
+        navFrame ??= requestAnimationFrame(() => {
+            navFrame = null;
+            updateHeaderActiveNavSpotlight();
+        });
+    };
+
     ['scroll', 'resize'].forEach((evt) => {
-        window.addEventListener(
-            evt,
-            () => {
-                requestAnimationFrame(updateHeaderActiveNavSpotlight);
-            },
-            { passive: true },
-        );
+        window.addEventListener(evt, scheduleNavSpotlight, { passive: true });
     });
 
     const navRoot = document.getElementById('site-redesign-nav');
     navRoot?.addEventListener(
         'click',
-        () => requestAnimationFrame(updateHeaderActiveNavSpotlight),
+        scheduleNavSpotlight,
         { passive: true },
     );
 
     document.querySelectorAll('.js-header-border-spotlight').forEach((el) => {
-        const ro = new ResizeObserver(() => requestAnimationFrame(updateHeaderActiveNavSpotlight));
+        const ro = new ResizeObserver(scheduleNavSpotlight);
         ro.observe(el);
     });
 });

@@ -13,7 +13,7 @@
         <x-ai-dots-background variant="section" />
     </div>
 
-    <section class="relative z-10 pt-36 pb-20">
+    <section class="relative z-10 public-page-top pb-20">
         <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8" data-documentation-client-notes>
             @php
                 $documentationLogos = $documentation['logos'] ?? [];

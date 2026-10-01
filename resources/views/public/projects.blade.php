@@ -27,8 +27,8 @@
     <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
         <x-ai-dots-background variant="section" />
     </div>
-    <!-- pt-28 / lg:pt-36: evitar que el header fijo tape el contenido -->
-    <div class="relative z-10 max-w-screen-xl px-4 mx-auto pt-28 pb-16 lg:pt-36 min-h-dynamic">
+    <!-- public-page-top: evitar que el header fijo tape el contenido -->
+    <div class="relative z-10 max-w-screen-xl px-4 mx-auto public-page-top pb-16 min-h-dynamic">
 
     <div class="text-center mb-16">
             <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">Echa un vistazo a mis trabajos</h1>

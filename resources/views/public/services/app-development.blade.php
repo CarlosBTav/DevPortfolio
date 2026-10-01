@@ -35,7 +35,7 @@
 @endphp
 
 @section('content')
-<section class="relative w-full pt-32 pb-20 lg:pt-36 lg:pb-24">
+<section class="relative w-full public-page-top public-page-top--compact pb-20 lg:pb-24">
     <div class="pointer-events-none absolute inset-0 bg-white dark:bg-slate-950"></div>
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(129,140,248,0.14),transparent_40%),radial-gradient(circle_at_82%_18%,rgba(139,92,246,0.1),transparent_36%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(129,140,248,0.2),transparent_40%),radial-gradient(circle_at_82%_18%,rgba(139,92,246,0.16),transparent_36%)]"></div>
 

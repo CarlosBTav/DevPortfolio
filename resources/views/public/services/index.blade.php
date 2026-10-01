@@ -123,7 +123,7 @@
 
 @section('content')
 {{-- Página servicios: fondo full-bleed + contenido anclado al max-width --}}
-<section class="relative min-h-screen w-full pt-32 pb-20 lg:pt-36 text-slate-900 dark:text-slate-100">
+<section class="relative min-h-screen w-full public-page-top public-page-top--compact pb-20 text-slate-900 dark:text-slate-100">
     {{-- Capas de fondo (sólido + gradientes decorativos): claro / oscuro --}}
     <div class="pointer-events-none absolute inset-0 bg-slate-50 dark:bg-slate-950"></div>
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(129,140,248,0.18),transparent_42%),radial-gradient(circle_at_80%_28%,rgba(139,92,246,0.14),transparent_38%),linear-gradient(180deg,rgba(248,250,252,0.98)_0%,rgba(241,245,249,1)_100%)] dark:bg-[radial-gradient(circle_at_20%_18%,rgba(129,140,248,0.25),transparent_42%),radial-gradient(circle_at_80%_28%,rgba(139,92,246,0.20),transparent_38%),linear-gradient(180deg,rgba(6,12,36,0.94)_0%,rgba(4,8,28,0.98)_100%)]"></div>

@@ -20,6 +20,7 @@ class PublicPagesSmokeTest extends TestCase
             'public.services.app',
             'public.services.faq',
             'public.about',
+            'public.stack',
             'public.contact',
         ];
 

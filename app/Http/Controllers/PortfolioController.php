@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Project;
-use App\Models\Technology;
 use App\Models\DocumentationClientNote;
 use App\Models\QuoteVersion;
 
@@ -22,11 +21,8 @@ class PortfolioController extends Controller
                     ->orderBy('id')
                     ->get();
 
-        // Traemos todas las tecnologías para la sección de skills
-        $technologies = Technology::all();
-
         // Devolvemos la vista (el HTML) pasándole los datos
-        return view('public.home', compact('projects', 'technologies'));
+        return view('public.home', compact('projects'));
     }
 
     // Método para la página de "Ver todos los proyectos"
@@ -58,6 +54,12 @@ class PortfolioController extends Controller
             ->filter(fn (array $track) => $track['jobs']->isNotEmpty());
 
         return view('public.about', compact('experienceTracks'));
+    }
+
+    // Método para la página de stack tecnológico
+    public function stack()
+    {
+        return view('public.stack');
     }
 
     public function contact()

@@ -38,13 +38,7 @@ if (scrollBtn) {
 
 // 2. Seguimiento del ratón (Tarjetas + textos con efectos)
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.js-spotlight-card, .js-project-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-        });
-    });
+    // Las tarjetas (.js-spotlight-card, .js-project-card) las sigue spotlight.js
     const nameSpotlights = document.querySelectorAll('.js-footer-name-spotlight');
     const designSpotlights = document.querySelectorAll('.js-footer-design-spotlight');
 

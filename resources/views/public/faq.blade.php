@@ -69,7 +69,7 @@
 @endpush
 
 @section('content')
-<section class="relative mx-3 pb-24 pt-32 md:mx-6 lg:mx-10 lg:pt-36">
+<section class="relative mx-3 public-page-top pb-24 md:mx-6 lg:mx-10">
     <div
         x-data="{
             active: (new URLSearchParams(window.location.search).get('cat')) || @js($defaultCategoryId),

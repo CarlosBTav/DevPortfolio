@@ -13,7 +13,7 @@
         <x-ai-dots-background variant="section" />
     </div>
     <!-- CONTENEDOR PRINCIPAL -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 pt-28 pb-12 lg:pt-32 lg:pb-20">
+    <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 public-page-top pb-12 lg:pb-20">
 
         <!-- 1. SECCIÓN INTRODUCCIÓN (NARRATIVA) -->
         <section class="mb-20">
@@ -225,6 +225,18 @@
 
         <!-- CTA FINAL -->
         <div class="mt-20 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">¿Te apetece ver más?</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-8">Echa un vistazo a lo que he construido y a las herramientas con las que trabajo.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <a href="{{ route('public.projects') }}" class="group inline-flex items-center justify-center font-semibold text-gray-900 dark:text-white bg-white/80 dark:bg-gray-800/60 border border-gray-300 dark:border-gray-600 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-300 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 backdrop-blur-sm px-8 py-4 text-base">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"></path></svg>
+                    Explora mis proyectos
+                </a>
+                <a href="{{ route('public.stack') }}" class="group inline-flex items-center justify-center font-semibold text-gray-900 dark:text-white bg-white/80 dark:bg-gray-800/60 border border-gray-300 dark:border-gray-600 hover:border-indigo-500 hover:text-indigo-600 dark:hover:border-indigo-400 dark:hover:text-indigo-300 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-1 backdrop-blur-sm px-8 py-4 text-base">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    Ver mi stack tecnológico
+                </a>
+            </div>
             <a href="{{ route('public.contact') }}" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-indigo-600 rounded-lg hover:bg-indigo-700 hover:shadow-lg hover:-translate-y-1">
                 ¿Hablamos?
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

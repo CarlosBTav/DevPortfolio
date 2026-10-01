@@ -51,6 +51,9 @@ Route::post('/contact', [ContactController::class, 'storePublicMessage'])->name(
 // Ruta para "Sobre mí / Historia"
 Route::get('/sobre-mi',[PortfolioController::class, 'about'])->name('public.about');
 
+// Página de stack tecnológico
+Route::get('/stack-tecnologico', [PortfolioController::class, 'stack'])->name('public.stack');
+
 // Asistente de contacto (embudo, sin recargas entre pasos)
 Route::get('/contacto', [PortfolioController::class, 'contact'])->name('public.contact');
 

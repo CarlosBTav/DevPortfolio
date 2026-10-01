@@ -10,7 +10,7 @@
 <div class="relative min-h-dynamic overflow-x-hidden bg-transparent dark:bg-transparent">
     <x-ai-dots-background variant="viewport" />
 
-    <section class="relative z-10 pt-36 pb-20">
+    <section class="relative z-10 public-page-top pb-20">
     <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div class="rounded-3xl border border-gray-200 bg-white/90 p-8 shadow-sm dark:border-gray-700 dark:bg-gray-800/80">
             <p class="text-xs uppercase tracking-[0.18em] text-indigo-600 dark:text-indigo-300">Presupuesto</p>

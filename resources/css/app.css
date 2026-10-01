@@ -114,7 +114,7 @@ body.projects-ai-dots-page .page-entry-reveal {
 
 /*
  * Sobre mí: colores del canvas de puntos (claro / oscuro).
- * El script lee --ai-dots-dot en cada frame para que el toggle de tema actualice los puntos.
+ * El script vuelve a leer --ai-dots-dot al cambiar la clase de <html>, para que el toggle de tema actualice los puntos.
  */
 body.about-ai-dots-page .ai-dots-bg-stack {
     --ai-dots-canvas-bg: #f9fafb;
@@ -145,6 +145,31 @@ html.dark body.about-ai-dots-page .ai-dots-bg-stack {
     .min-h-dynamic {
         min-height: 100vh;
         min-height: 100lvh;
+    }
+}
+
+/*
+ * Separación superior de las páginas públicas bajo el header fijo.
+ * Única fuente de verdad: usar `public-page-top` en el contenedor principal.
+ */
+@layer components {
+    .public-page-top {
+        padding-top: 10rem;
+    }
+
+    /* Servicios: su hero ya añade espacio propio (padding interno y texto centrado) */
+    .public-page-top--compact {
+        padding-top: 8rem;
+    }
+
+    @media (min-width: 1024px) {
+        .public-page-top {
+            padding-top: 11rem;
+        }
+
+        .public-page-top--compact {
+            padding-top: 9rem;
+        }
     }
 }
 

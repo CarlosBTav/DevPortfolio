@@ -120,17 +120,22 @@
     function updateGlow(glow, maskLayer, canvas, state, now) {
         if (!glow) return;
 
-        glow.style.opacity = '0';
-
-        if (!maskLayer) return;
-        if (!glow._aiDotsPool) glow._aiDotsPool = [];
-
         var active = [];
         for (var i = 0; i < state.list.length; i++) {
             if (now - state.list[i].t < RIPPLE_DURATION) {
                 active.push(state.list[i]);
             }
         }
+
+        // Sin ondas activas ni brillos por apagar no hay nada que tocar: así no se
+        // fuerza un cálculo de layout en cada frame
+        if (!active.length && !glow._aiDotsLit) return;
+        glow._aiDotsLit = active.length > 0;
+
+        glow.style.opacity = '0';
+
+        if (!maskLayer) return;
+        if (!glow._aiDotsPool) glow._aiDotsPool = [];
 
         while (glow._aiDotsPool.length < active.length) {
             var clone = document.createElement('div');

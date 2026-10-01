@@ -10,6 +10,8 @@
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    {{-- Las fuentes se piden en modo CORS: sin crossorigin, esa conexión anticipada no se reutiliza para ellas --}}
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link href="https://fonts.bunny.net/css?family=figtree:400,600,800&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

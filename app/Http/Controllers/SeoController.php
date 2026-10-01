@@ -15,6 +15,7 @@ class SeoController extends Controller
             ['route' => 'public.services.web', 'changefreq' => 'monthly', 'priority' => '0.9'],
             ['route' => 'public.services.app', 'changefreq' => 'monthly', 'priority' => '0.9'],
             ['route' => 'public.about', 'changefreq' => 'monthly', 'priority' => '0.7'],
+            ['route' => 'public.stack', 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['route' => 'public.services.faq', 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['route' => 'public.contact', 'changefreq' => 'monthly', 'priority' => '0.6'],
         ];
