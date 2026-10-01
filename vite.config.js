@@ -30,6 +30,8 @@ export default defineConfig({
                 'resources/js/ai-dots-touch.js',
                 'resources/js/documentation-notes.js',
                 'resources/js/public-faq-accordion.js',
+                'resources/js/experience-autoscroll.js',
+                'resources/js/overscroll-bounce.js',
             ],
             refresh: true,
         }),

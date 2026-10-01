@@ -45,7 +45,19 @@ class PortfolioController extends Controller
     //Método para la página de historia
     public function about()
     {
-        return view('public.about');
+        $jobs = collect(config('experience.jobs'))
+            ->map(fn (array $job) => $job + [
+                'current' => collect($job['periods'])->contains(fn ($period) => $period[1] === null),
+                'starts_at' => collect($job['periods'])->min(fn ($period) => $period[0]),
+            ])
+            ->sortBy('starts_at')
+            ->groupBy('track');
+
+        $experienceTracks = collect(config('experience.tracks'))
+            ->map(fn (array $track, string $key) => $track + ['jobs' => $jobs->get($key, collect())->values()])
+            ->filter(fn (array $track) => $track['jobs']->isNotEmpty());
+
+        return view('public.about', compact('experienceTracks'));
     }
 
     public function contact()

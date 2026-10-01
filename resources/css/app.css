@@ -103,6 +103,11 @@ html.dark body.about-ai-dots-page {
     background-color: #111827 !important;
 }
 
+/* El fondo de Sobre mí se prolonga bajo el footer: éste debe pintarse encima */
+body.about-ai-dots-page .site-footer {
+    z-index: 20;
+}
+
 body.projects-ai-dots-page .page-entry-reveal {
     margin-top: -3rem;
 }

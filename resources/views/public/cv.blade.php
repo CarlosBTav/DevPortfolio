@@ -1063,6 +1063,18 @@ rgb(235, 230, 221) 100%
       </h2>
       <div class="timeline">
 
+        <!-- Canagrosa (fecha de inicio pendiente de confirmar; ver config/experience.php) -->
+        <div class="t-item">
+          <div class="t-top">
+            <span class="t-title">Desarrollador Full Stack Web & Mobile</span>
+            <span class="t-date">2026 — Actualidad</span>
+          </div>
+          <div class="t-company">Canagrosa · Sector aeroespacial</div>
+          <ul class="t-bullets">
+            <li>Desarrollo full stack, <strong>web y móvil</strong>, del <strong>ERP y CRM</strong> de un laboratorio y proveedor de servicios técnicos de alta especialización en el sector aeroespacial.</li>
+          </ul>
+        </div>
+
         <!-- Freelance -->
         <div class="t-item">
           <div class="t-top">
