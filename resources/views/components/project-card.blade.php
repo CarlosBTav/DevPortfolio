@@ -64,7 +64,7 @@
                     class="group/demo relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700 overflow-hidden bg-white/60 dark:bg-gray-900/45 backdrop-blur-sm transition-all duration-300 hover:bg-gray-900/[0.04] dark:hover:bg-white/[0.06] hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-md hover:shadow-gray-900/5 dark:hover:shadow-white/5">
                         <span class="absolute inset-0 rounded-xl bg-gradient-to-br from-indigo-500/0 via-indigo-500/0 to-cyan-500/0 group-hover/demo:from-indigo-500/[0.05] group-hover/demo:via-indigo-500/[0.02] group-hover/demo:to-cyan-500/[0.05] dark:group-hover/demo:from-indigo-300/[0.07] dark:group-hover/demo:via-indigo-300/[0.03] dark:group-hover/demo:to-cyan-300/[0.07] transition-colors duration-300 z-0"></span>
                         @if($link->isApp())
-                            <x-icons.play-store class="relative z-10 w-4 h-4 transition-all duration-300 group-hover/demo:text-gray-900 dark:group-hover/demo:text-white group-hover/demo:scale-105" />
+                            <x-icons.app-open class="app-phone relative z-10 w-[18px] h-[18px] shrink-0" />
                         @else
                             <x-icons.eye class="demo-eye-blink relative z-10 w-4 h-4 transition-all duration-300 group-hover/demo:text-gray-900 dark:group-hover/demo:text-white group-hover/demo:scale-105" />
                         @endif

@@ -2,7 +2,7 @@
 
 Backlog vivo del proyecto. Ver `.ai/workflows/pending.md` para mantenerlo.
 
-No hay tareas abiertas conocidas (25/09/2026). La suite pasa entera (38 tests).
+Las tareas abiertas se detallan a continuación.
 
 Al abrir una, anótala aquí con qué falta, por qué y las rutas implicadas; las
 tareas transversales de la VPS van a `/var/www/.ai/PENDING.md`.
@@ -16,6 +16,14 @@ copias WebP de 640/1280 px (`App\Support\ImageDerivatives`, comando
 
 Queda por mirar:
 
+- [ ] Investigar si la estela del hover y la onda de clic/toque pueden mantenerse
+      al hacer scroll en Sobre mí, Stack tecnológico, CV y Portfolio **sin perder
+      rendimiento** (01/10/2026). Ahora el scroll cancela los efectos para
+      preservar la fluidez; conservar ese comportamiento hasta validar una
+      alternativa. Rutas: `resources/js/ai-dots-hover.js`,
+      `resources/views/components/ai-dots-background.blade.php`,
+      `resources/views/public/{about,stack,cv,projects}.blade.php`.
+      Contexto y límites actuales: `.ai/frontend-performance.md`.
 - [ ] La portada lleva **60 KB de CSS y 47 KB de JS en línea** (~50% del HTML).
       Al estar dentro del HTML se redescargan en cada página y no se pueden
       cachear aparte. Moverlos a un bundle de Vite los haría cacheables, pero

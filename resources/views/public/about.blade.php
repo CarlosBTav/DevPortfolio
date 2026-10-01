@@ -10,7 +10,7 @@
     {{-- section: el fondo cubre toda la altura del contenido (viewport fijo cortaba al hacer scroll).
          -bottom-12 lo prolonga bajo el footer para rellenar el hueco de sus esquinas redondeadas --}}
     <div class="pointer-events-none absolute inset-x-0 top-0 -bottom-12 z-0 overflow-hidden" aria-hidden="true">
-        <x-ai-dots-background variant="section" />
+        <x-ai-dots-background variant="section" :hover-only="true" :spacing="22" />
     </div>
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 public-page-top pb-12 lg:pb-20">

@@ -20,6 +20,7 @@ aquí no se duplican.
 | --- | --- |
 | Tarea pendiente específica de DevPortfolio | `.ai/PENDING.md` |
 | Proceso para registrar o cerrar pendientes | `.ai/workflows/pending.md` |
+| Fondo de puntos y rendimiento de sus interacciones | `.ai/frontend-performance.md` |
 | Regla transversal de la VPS | `/var/www/.ai/` según su tabla de enrutado |
 
 Si una nota no encaja en ningún fichero, crea el fichero temático mínimo y
@@ -32,6 +33,7 @@ fichero es invisible.
 .ai/
 ├── README.md
 ├── PENDING.md
+├── frontend-performance.md
 └── workflows/
     └── pending.md
 ```

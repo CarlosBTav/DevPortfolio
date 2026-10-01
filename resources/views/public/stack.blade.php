@@ -82,7 +82,7 @@
 </style>
 <div class="relative w-full min-h-dynamic overflow-x-clip bg-transparent dark:bg-transparent">
     <div class="pointer-events-none absolute inset-x-0 top-0 -bottom-12 z-0 overflow-hidden" aria-hidden="true">
-        <x-ai-dots-background variant="section" />
+        <x-ai-dots-background variant="section" :hover-only="true" :spacing="22" />
     </div>
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 public-page-top pb-12 lg:pb-20">

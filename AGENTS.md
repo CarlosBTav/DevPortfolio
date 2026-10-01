@@ -475,3 +475,6 @@ VPS va a `/var/www/.ai/PENDING.md`, no aquí.
 
 La organización del resto de documentación local se explica en
 [`.ai/README.md`](.ai/README.md).
+
+Al tocar el fondo de puntos y sus interacciones, lee
+[`.ai/frontend-performance.md`](.ai/frontend-performance.md).

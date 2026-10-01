@@ -25,7 +25,7 @@
 <div class="relative w-full min-h-dynamic overflow-x-hidden bg-transparent dark:bg-transparent">
     {{-- section: el fondo acompaña la altura del documento (viewport cortaba al hacer scroll) --}}
     <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-        <x-ai-dots-background variant="section" />
+        <x-ai-dots-background variant="section" :hover-only="true" :spacing="22" />
     </div>
     <!-- public-page-top: evitar que el header fijo tape el contenido -->
     <div class="relative z-10 max-w-screen-xl px-4 mx-auto public-page-top pb-16 min-h-dynamic">

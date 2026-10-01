@@ -880,7 +880,7 @@ rgb(235, 230, 221) 100%
 </head>
 <body>
 @if(empty($downloadMode ?? false))
-    <x-ai-dots-background variant="viewport" />
+    <x-ai-dots-background variant="viewport" :hover-only="true" :spacing="22" />
 @endif
 @if(empty($downloadMode ?? false))
 <header class="cv-toolbar" role="banner">

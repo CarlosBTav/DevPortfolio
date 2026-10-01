@@ -28,6 +28,7 @@ export default defineConfig({
                 'resources/css/spotlight.css',
                 'resources/js/spotlight.js',
                 'resources/js/ai-dots-background.js',
+                'resources/js/ai-dots-hover.js',
                 'resources/js/documentation-notes.js',
                 'resources/js/public-faq-accordion.js',
                 'resources/js/experience-autoscroll.js',

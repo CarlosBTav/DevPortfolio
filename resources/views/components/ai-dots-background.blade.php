@@ -1,6 +1,9 @@
 @props([
     'variant' => 'viewport',
     'interactive' => true,
+    'static' => false,
+    'hoverOnly' => false,
+    'spacing' => 28,
     'wavesOverlay' => true,
     /*
      * Optional theme overrides (defaults match original /cv look).
@@ -18,7 +21,8 @@
         default => 'ai-dots-bg-stack ai-dots-bg-stack--viewport',
     };
 
-    $styleParts = [];
+    $spacing = max(8, min(60, (int) $spacing));
+    $styleParts = ['--ai-dots-spacing: ' . $spacing . 'px'];
     if ($backgroundColor !== null && $backgroundColor !== '') {
         $bg = e($backgroundColor);
         $styleParts[] = '--ai-dots-canvas-bg: ' . $bg;
@@ -99,6 +103,28 @@
             width: 100%;
             height: 100%;
             background-color: var(--ai-dots-canvas-bg);
+        }
+        /* Patrón estático: sin canvas, ondas, filtros ni eventos de interacción. */
+        .ai-dots-bg-stack--static {
+            background-color: var(--ai-dots-canvas-bg);
+            background-image: radial-gradient(circle, rgba(var(--ai-dots-dot), 0.35) 1.5px, transparent 1.75px);
+            background-size: var(--ai-dots-spacing) var(--ai-dots-spacing);
+            background-position: calc(var(--ai-dots-spacing) / -2) calc(var(--ai-dots-spacing) / -2);
+        }
+        /* La interacción se pinta solo en pequeños tiles cercanos al cursor. */
+        .ai-dots-bg-stack--hover-only {
+            background-image: radial-gradient(circle, rgba(var(--ai-dots-dot), 0.28) 1px, transparent 1.25px);
+        }
+        .ai-dots-hover-canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            contain: strict;
+            will-change: transform, opacity;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .ai-dots-hover-canvas { display: none; }
         }
         .ai-dots-bg-stack--hero .js-ai-dots-canvas {
             background-color: transparent;
@@ -195,7 +221,20 @@
     </style>
 @endonce
 
-@if($interactive)
+@if($static)
+{{-- Fondo ligero compartido por las páginas de contenido. --}}
+<div {{ $attributes->merge(['class' => $stackClass . ' ai-dots-bg-stack--static']) }} @if($inlineStyle) style="{{ $inlineStyle }}" @endif aria-hidden="true"></div>
+@elseif($hoverOnly)
+{{-- Patrón estático e interacción local; no carga las ondas autónomas. --}}
+<div {{ $attributes->merge(['class' => $stackClass . ' ai-dots-bg-stack--static ai-dots-bg-stack--hover-only']) }} style="{{ $inlineStyle }}" data-ai-dots-hover data-spacing="{{ $spacing }}" aria-hidden="true">
+    <canvas class="ai-dots-hover-canvas"></canvas>
+</div>
+
+@pushOnce('scripts', 'portfolio-ai-dots-hover')
+@vite('resources/js/ai-dots-hover.js')
+@endPushOnce
+
+@elseif($interactive)
 <div {{ $attributes->merge(['class' => $stackClass]) }} @if($inlineStyle) style="{{ $inlineStyle }}" @endif data-ai-dots-root="{{ $variant }}" @if($variant === 'hero') data-ai-dots-hit="stage" data-spacing="22" @endif aria-hidden="true">
     <canvas class="js-ai-dots-canvas"></canvas>
     @if($wavesOverlay)
